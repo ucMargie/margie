@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCF</title>
+    <script id="usercentrics-cmp" src="https://app.usercentrics.eu/browser-ui/latest/loader.js" data-settings-id="Ysld9kF78" data-tcf-enabled></script>
+</head>
+<body>
+    <div>TCF V2 test</div>
+    <script>
+        __tcfapi('getTCData', 2, (tcData, success) => { console.log(tcData) });
+    </script>
+    <script>
+        __tcfapi('addEventListener', 2, function(tcData,success){
+            // inital tc string information
+            if(success && tcData.eventStatus === 'tcloaded') {
+                console.log(' TCF tcLoaded Event - tcString: '+tcData.tcString);        
+            }
+            // tc string after user interaction completed
+            else if(success && tcData.eventStatus === 'useractioncomplete') {
+                console.log('TCF useractioncomplete Event - tcString: '+tcData.tcString);
+            }
+            else {
+                // do something else
+            }
+        });
+
+    </script>
+</body>
+</html>
