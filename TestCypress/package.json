@@ -1,0 +1,20 @@
+{
+  "name": "testcypress",
+  "version": "1.0.0",
+  "description": "Test Cypress with Electron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "not publishing"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/electron-plugin": "^1.1.0",
+    "cypress": "^8.3.1"
+  },
+  "dependencies": {}
+}
