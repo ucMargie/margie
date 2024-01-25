@@ -18,6 +18,7 @@
         gtag("consent", "default", {
             ad_storage: "denied",
             analytics_storage: "denied",
+            test_storage: "denied",
             wait_for_update: 2000 // milliseconds to wait for update
         });
 
@@ -56,18 +57,23 @@
               {
                   gtag("consent", "update", {
                       ad_storage: e.detail[ucAdService] ? 'granted':'denied',
-                      analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+                      analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
+                      test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
                   });
               }
               else {            
                   if(e.detail.hasOwnProperty(ucAdService)) {
                     gtag("consent", "update", {
-                        ad_storage: e.detail[ucAdService] ? 'granted':'denied'
+                        ad_storage: e.detail[ucAdService] ? 'granted':'denied',
+                        test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+
                     });
                 }            
                 if(e.detail.hasOwnProperty(ucAnalyticsService)) {
                   gtag("consent", "update", {
-                        analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+                        analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
+                        test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+
                     });
                 }
             }
