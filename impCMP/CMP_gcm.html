@@ -64,22 +64,25 @@
               {
                   gtag("consent", "update", {
                       ad_storage: e.detail[ucAdService] ? 'granted':'denied',
-                      functionality_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
-                      personalization_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+                      functionality_storage: e.detail[ucAdService] ? 'granted':'denied',
+                      personalization_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
+                      test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
+
                   });
               }
               else {            
                   if(e.detail.hasOwnProperty(ucAdService)) {
                     gtag("consent", "update", {
                         ad_storage: e.detail[ucAdService] ? 'granted':'denied',
-                        test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
-
+                        functionality_storage: e.detail[ucAdService] ? 'granted':'denied'
                     });
                 }            
                 if(e.detail.hasOwnProperty(ucAnalyticsService)) {
                   gtag("consent", "update", {
                         analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
-                        test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+                        test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
+                        personalization_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+
 
                     });
                 }
