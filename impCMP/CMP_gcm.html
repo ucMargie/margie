@@ -50,7 +50,7 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-W84WFH2'); //replace GTM-XXXXXX with Google Tag Manager ID
     </script>
-<!--------------
+
   <script type="text/javascript">
     
     window.addEventListener("ucEvent", function (e) {
@@ -64,8 +64,8 @@
               {
                   gtag("consent", "update", {
                       ad_storage: e.detail[ucAdService] ? 'granted':'denied',
-                      analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
-                      test_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+                      functionality_storage: e.detail[ucAnalyticsService] ? 'granted':'denied',
+                      personalization_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
                   });
               }
               else {            
