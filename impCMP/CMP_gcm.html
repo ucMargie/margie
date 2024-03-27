@@ -16,22 +16,23 @@
         }
           </script>
 
-    <!------------ 
+ 
 <script type="text/javascript">
         // set „denied" as default for both ad and analytics storage,
         gtag("consent", "default", {
-            ad_storage: "denied",
-            analytics_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied",
+            //ad_storage: "denied",
+            //analytics_storage: "denied",
+            //ad_user_data: "denied",
+            //ad_personalization: "denied",
             test_storage: "denied",
-           wait_for_update: 2000 // milliseconds to wait for update
+          // wait_for_update: 2000 // milliseconds to wait for update
         });
 
         // Enable ads data redaction by default [optional]
-        gtag("set", "ads_data_redaction", true);
+        //gtag("set", "ads_data_redaction", true);
         
     </script>
+     <!------------ 
 ------>
     <script type="text/javascript">
         // Google Tag Manager
@@ -50,13 +51,13 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-W84WFH2'); //replace GTM-XXXXXX with Google Tag Manager ID
     </script>
-<!--------------
+
   <script type="text/javascript">
     
     window.addEventListener("ucEvent", function (e) {
           if( e.detail && e.detail.event == "consent_status") {
               // check for consent status of service "Google Analytics"    
-              var ucAnalyticsService = 'Google Analytics';
+              var ucAnalyticsService = 'test';
               // check for consent status of service "Google Ads Remarketing" 
               var ucAdService = 'Adstorage'; 
 
@@ -90,6 +91,7 @@
         }
     });
 </script>
+  <!--------------
 ----------->
 
 </head>
