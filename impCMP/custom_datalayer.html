@@ -15,7 +15,10 @@
         data-settings-id="xuW4NyLzg"></script>
   <!-- Google Tag Manager -->
     <script type="text/javascript">
-     
+      window.gtagDataLayer = window.gtagDataLayer || [];
+        function gtag() {
+            gtagDataLayer.push(arguments);
+        }
 
         // set „denied" as default for both ad and analytics storage, as well as ad_user_data and ad_personalization,
         gtag("consent", "default", {
@@ -52,10 +55,7 @@
 
   <script type="text/javascript">
 // Please replace 'ucEvent' with the event you have just created
-    window.gtagDataLayer = window.gtagDataLayer || [];
-        function gtag() {
-            gtagDataLayer.push(arguments);
-        }
+
 window.addEventListener("ucEvent", function (e) {
     if( e.detail && e.detail.event == "consent_status") {
         // Please replace the analytics service name here with the customized service    
