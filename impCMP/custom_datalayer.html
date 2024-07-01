@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--data-settings-id="P5u4QY-_e" --->
+    <!--data-settings-id="xuW4NyLzg" --->
+    <!--data-settings-id-sandbox="EWb5SqHuOMnDQT" --->
+    <title>CMP V2</title> 
+
+       
+   
+    <script id="usercentrics-cmp" src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
+        data-settings-id="xuW4NyLzg"></script>
+  <!-- Google Tag Manager -->
+    <script type="text/javascript">
+        // create dataLayer
+        window.gtagDataLayer = window.gtagDataLayer || [];
+        function gtag() {
+            gtagDataLayer.push(arguments);
+        }
+
+        // set „denied" as default for both ad and analytics storage, as well as ad_user_data and ad_personalization,
+        gtag("consent", "default", {
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            ad_storage: "denied",
+            analytics_storage: "denied",
+            wait_for_update: 2000 // milliseconds to wait for update
+        });
+
+        // Enable ads data redaction by default [optional]
+        gtag("set", "ads_data_redaction", true);
+    </script>
+
+    <script type="text/javascript">
+        // Google Tag Manager
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W84WFH2'); //replace GTM-XXXXXX with Google Tag Manager ID
+    </script>
+
+<!-- End Google Tag Manager -->
+
+  <script type="text/javascript">
+// Please replace 'ucEvent' with the event you have just created
+    window.gtagDataLayer = window.gtagDataLayer || [];
+        function gtag() {
+            gtagDataLayer.push(arguments);
+        }
+window.addEventListener("ucEvent", function (e) {
+    if( e.detail && e.detail.event == "consent_status") {
+        // Please replace the analytics service name here with the customized service    
+        var ucAnalyticsService = 'Google Analytics';
+        // Please replace the ad service name here with the customized service
+        var ucAdService = 'Google Ads Remarketing';
+
+        if(e.detail.hasOwnProperty(ucAnalyticsService) && e.detail.hasOwnProperty(ucAdService))
+        {
+            gtag("consent", "update", {
+                ad_storage: e.detail[ucAdService] ? 'granted':'denied',
+                ad_user_data: e.detail[ucAdService] ? 'granted':'denied',
+                ad_personalization: e.detail[ucAdService] ? 'granted':'denied',
+                analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+            });
+        }
+        else {            
+            if(e.detail.hasOwnProperty(ucAdService)) {
+                gtag("consent", "update", {
+                    ad_storage: e.detail[ucAdService] ? 'granted':'denied',
+                    ad_user_data: e.detail[ucAdService] ? 'granted':'denied',
+                    ad_personalization: e.detail[ucAdService] ? 'granted':'denied' 
+                });
+            }            
+            if(e.detail.hasOwnProperty(ucAnalyticsService)) {
+              gtag("consent", "update", {
+                    analytics_storage: e.detail[ucAnalyticsService] ? 'granted':'denied'
+                });
+            }
+        }
+    }
+});
+</script>
+
+
+</head>
+
+<body>
+
+  <h2 style="color: #06068a;">Usercentrics CMP V2 custom Data Layer</h2>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W84WFH2"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+   
+</body>
+
+</html>
