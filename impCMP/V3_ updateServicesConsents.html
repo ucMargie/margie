@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html> 
+  
+<head>
+   <title>Welcome to UserCentrics Implementation Test </title>
+<script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="g-g4ftUclqEEbm" async></script>
+  </head>
+
+  <body>
+   
+<h1>Usercentrics CMP V2 Test Page</h1>
+   
+<script> 
+ 
+    async function updateConsent() {
+    const serviceConsents = [
+        { id: 'HkocEodjb7', consent: false },// Google Analytics
+        { id: 'S1_9Vsuj-Q', consent: false } // Google Ads
+    ];
+
+    try {
+        await __ucCmp.updateServicesConsents(serviceConsents);
+        await __ucCmp.saveConsents();
+        console.log('Service consents updated successfully');
+    } catch (error) {
+        console.error('Failed to update service consents:', error);
+    }
+}
+ 
+updateConsent();
+</script>
+
+
+<button onclick="updateConsent();">accept</button>
+
+
+    
+<p>Embedding-Test.</p>
+    
+<div class="uc-embed" uc-layout="1" uc-data="all"></div>
+
+    
+</body>
+</html>
