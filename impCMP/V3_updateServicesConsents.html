@@ -4,14 +4,7 @@
 <head>
    <title>Welcome to UserCentrics Implementation Test </title>
 <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="g-g4ftUclqEEbm" async></script>
-  </head>
-
-  <body>
-   
-<h1>Usercentrics CMP V2 Test Page</h1>
-   
-<script> 
- 
+  <script> 
     async function updateConsent() {
     const serviceConsents = [
         { id: 'HkocEodjb7', consent: false },// Google Analytics
@@ -30,6 +23,12 @@
 updateConsent();
 </script>
 
+  </head>
+
+  <body>
+   
+<h1>Usercentrics CMP V2 Test Page</h1>
+   
 
 <button onclick="updateConsent();">accept</button>
 
