@@ -59,14 +59,14 @@ Adjust the existing Google Tag Manager code to use GCM
         })(window, document, 'script', 'dataLayer', 'GTM-W84WFH2'); //replace GTM-XXXXXX with Google Tag Manager ID
     </script>
 
-  
- // Dynamic Consent Update: Handles Consent for Google Consent Mode v2 Signals
- // Usercentrics CMP currently maps the values of the consent update event as follows
+  <!--
+ Dynamic Consent Update: Handles Consent for Google Consent Mode v2 Signals
+  Usercentrics CMP currently maps the values of the consent update event as follows
  
- //GCM v2 signals:
- // ad_storage, ad_user_data, ad_personalization, analytics_storage,
- //functionality_storage, personalization_storage, security_storage
-
+ GCM v2 signals:
+ ad_storage, ad_user_data, ad_personalization, analytics_storage,
+ functionality_storage, personalization_storage, security_storage
+-->
 
   <script>
    window.addEventListener('ucEvent', function(e) {
