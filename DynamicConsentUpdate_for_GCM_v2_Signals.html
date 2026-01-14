@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Consent Update: Handles Consent for GCM v2 Signals</title>
+      
+  
+    
+         <script id="usercentrics-cmp" data-settings-id="xuW4NyLzg" src="https://app.usercentrics.eu/browser-ui/latest/loader.js" async></script>
+      
+<!--
+
+
+Adjust the existing Google Tag Manager code to use GCM
+
+-->
+  
+      <script type="text/javascript">
+        // create dataLayer
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        // set „denied" as default for both ad and analytics storage,
+        gtag("consent", "default", {
+            ad_storage: "denied",
+            analytics_storage: "denied",
+            wait_for_update: 2000 // milliseconds to wait for update
+        });
+
+        // Enable ads data redaction by default [optional]
+        gtag("set", "ads_data_redaction", true);
+    </script>
+
+    <script type="text/javascript">
+        // Google Tag Manager
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W84WFH2'); //replace GTM-XXXXXX with Google Tag Manager ID
+    </script>
+
+  /**
+ * Dynamic Consent Update: Handles Consent for Google Consent Mode v2 Signals
+ * Usercentrics CMP currently maps the values of the consent update event as follows
+ * 
+ * GCM v2 signals:
+ * ad_storage, ad_user_data, ad_personalization, analytics_storage,
+ * functionality_storage, personalization_storage, security_storage
+ */
+
+  <script>
+   window.addEventListener('ucEvent', function(e) {
+    // Only proceed if event exists and is a consent update
+    if (!e.detail || e.detail.event !== 'consent_status') return;
+
+    // Only update when user explicitly accepts/changes consent
+    if (e.detail.type !== 'EXPLICIT') return;
+
+    // Map GCM v2 keys directly to your CMP service names
+    var serviceMap = {
+        ad_user_data: 'Google Ads Remarketing',
+        ad_personalization: 'Google Ads Remarketing',
+        ad_storage: 'Google Ads Remarketing',
+        analytics_storage: 'Google Analytics',
+        functionality_storage: 'Bing Remarketing Conversion',
+        personalization_storage: 'Personalization',
+        security_storage: 'test'
+    };
+
+    // Build the consent update object dynamically
+    var consentUpdate = {};
+    Object.entries(serviceMap).forEach(([consentSignal, serviceName]) => {
+        if (serviceName && e.detail.hasOwnProperty(serviceName)) {
+            consentUpdate[consentSignal] = e.detail[serviceName] ? 'granted' : 'denied';
+        }
+    });
+
+    // Update Google Consent Mode if at least one category exists
+    if (Object.keys(consentUpdate).length > 0) {
+        gtag('consent', 'update', consentUpdate);
+    }
+});
+</script>
+
+
+ 
+
+</head>
+<body>
+    <h2 style="color: #06068a;">Dynamic Consent Update: Handles Consent for Google Consent Mode v2 Signals.</h2>
+    
+   <!-- Google Tag Manager (noscript) -->
+ <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W84WFH2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ <!-- End Google Tag Manager (noscript) -->
+
+  
+
+    </body>
+</html>
