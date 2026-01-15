@@ -32,7 +32,7 @@ Adjust the existing Google Tag Manager code to use GCM
             analytics_storage: "denied",
             functionality_storage: "denied",
             personalization_storage: "denied",
-            security_storage: "test"
+            security_storage: "denied"
           
             wait_for_update: 2000 // milliseconds to wait for update
         });
@@ -49,46 +49,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-W84WFH2');</script>
 <!-- End Google Tag Manager -->
 
-  <!--
- Dynamic Consent Update: Handles Consent for Google Consent Mode v2 Signals
-  Usercentrics CMP currently maps the values of the consent update event as follows
- 
- GCM v2 signals:
- ad_storage, ad_user_data, ad_personalization, analytics_storage,
- functionality_storage, personalization_storage, security_storage
--->
 
   <script>
    window.addEventListener("ucEvents", function(e) {
-    // Only proceed if event exists and is a consent update
-    if (!e.detail || e.detail.event !== 'consent_status') return;
+    // Only proceed if event exists, is a consent update, and is explicit
+    if (e.detail && e.detail.event === 'consent_status' && e.detail.type === 'EXPLICIT') {
 
-    // Only update when user explicitly accepts/changes consent
-    if (e.detail.type !== 'EXPLICIT') return;
+        // Map GCM v2 keys directly to your CMP service names
+        var serviceMap = {
+            ad_user_data: 'Google Ads Remarketing',
+            ad_personalization: 'Google Ads Remarketing',
+            ad_storage: 'Google Ads Remarketing',
+            analytics_storage: 'Google Analytics',
+            functionality_storage: 'Bing Remarketing Conversion',
+            personalization_storage: 'Personalization',
+            security_storage: 'test'
+        };
 
-    // Map GCM v2 keys directly to your CMP service names
-    var serviceMap = {
-        ad_user_data: 'Google Ads Remarketing',
-        ad_personalization: 'Google Ads Remarketing',
-        ad_storage: 'Google Ads Remarketing',
-        analytics_storage: 'Google Analytics',
-        functionality_storage: 'Bing Remarketing Conversion',
-        personalization_storage: 'Personalization',
-        security_storage: 'test'
-    };
+        // Build the consent update object dynamically
+        var consentUpdate = {};
+        Object.entries(serviceMap).forEach(([consentSignal, serviceName]) => {
+            if (serviceName && e.detail.hasOwnProperty(serviceName)) {
+                consentUpdate[consentSignal] = e.detail[serviceName] ? 'granted' : 'denied';
+            }
+        });
 
-    // Build the consent update object dynamically
-    var consentUpdate = {};
-    Object.entries(serviceMap).forEach(([consentSignal, serviceName]) => {
-        if (serviceName && e.detail.hasOwnProperty(serviceName)) {
-            consentUpdate[consentSignal] = e.detail[serviceName] ? 'granted' : 'denied';
+        // Update Google Consent Mode if at least one category exists
+        if (Object.keys(consentUpdate).length > 0) {
+            gtag('consent', 'update', consentUpdate);
         }
-    });
 
-    // Update Google Consent Mode if at least one category exists
-    if (Object.keys(consentUpdate).length > 0) {
-        gtag('consent', 'update', consentUpdate);
-    }
+    } // end if e.detail && e.detail.event === 'consent_status' && e.detail.type === 'EXPLICIT'
 });
 </script>
 
