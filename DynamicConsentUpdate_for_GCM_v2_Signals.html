@@ -52,7 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script>
    window.addEventListener("ucEvents", function(e) {
     // Only proceed if event exists, is a consent update, and is explicit
-    if (e.detail && e.detail.event === "consent_status" && e.detail.type === "explicit") {
+    if (e.detail && e.detail.event === "consent_status" && e.detail.type.toLowerCase() === 'explicit') {
 
         // Map GCM v2 keys directly to your CMP service names
         var serviceMap = {
